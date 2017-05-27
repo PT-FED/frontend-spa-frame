@@ -11,6 +11,28 @@
 
         npm install -g cnpm --registry=https://registry.npm.taobao.org
 
+ 3. 安装依赖
+        npm install 或者 cnpm install
+
+### 基础命令
+
+ 1. iconfont生成工具
+
+        npm run icon
+
+ 2. 编译iconfont + 本地构建 + 启动服务器
+
+        npm start
+
+ 3. 本地开发构建
+
+        npm run dev
+
+ 4. 生成构建(未完成)
+
+        npm run prod
+
+---------------------------------- 下面请忽略 ------------------------------
 ### Build Setup
 
 ``` bash
