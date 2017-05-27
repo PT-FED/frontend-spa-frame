@@ -11,7 +11,7 @@ module.exports = {
 	// devtool: 'cheap-eval-source-map',
 	entry: {
 		app: './src/app.main.js',
-		vendor: ['vue', 'vuex', 'vue-router']
+		vendor: ['vue', 'vuex', 'vue-router', 'element-ui'],
 	},
 	output: {
 		path: path.resolve(__dirname, '../dist'),
@@ -38,17 +38,18 @@ module.exports = {
 				include: [path.resolve(__dirname, '../src'), path.resolve(__dirname, '../test')]
 			},
 			{
-				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-				loader: 'file-loader',
+				test: /\.(png|jpe?g|gif)(\?.*)?$/,
+				loader: 'url-loader',
 				options: {
-					name: path.resolve(__dirname, '../dist/[path][name].[ext]')
+					limit: 10000,
+					name: 'assets/images/[name].[ext]'
 				}
 			},
 			{
-				test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-				loader: 'url-loader',
+				test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
+				loader: 'file-loader',
 				options: {
-					name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+					name: 'assets/fonts/[name].[ext]'
 				}
 			}
 		]
@@ -56,11 +57,11 @@ module.exports = {
 	plugins: [
 
 		// 教程: https://doc.webpack-china.org/plugins/extract-text-webpack-plugin/
-		new ExtractTextPlugin('styles.css'),		// 提取文本
+		new ExtractTextPlugin('assets/styles/styles.css'),		// 提取样式文件
 
 		// 教程: https://doc.webpack-china.org/guides/code-splitting-libraries/#commonschunkplugin
 		new webpack.optimize.CommonsChunkPlugin({	// 内部插件(提取公共 bundle )
-			name: 'vendor' 							// 指定公共 bundle 的名称
+			names: ['vendor'] 						// 指定公共 bundle 的名称
 		}),
 
 		// 教程: https://doc.webpack-china.org/guides/code-splitting-libraries/#manifest-
@@ -76,14 +77,20 @@ module.exports = {
 			title: 'Webpack App',
 			inject: true
 		}),
-	]
-	// resolve: {
-	// 	extensions: ['.js', '.vue', '.json'],
-	// 	alias: {
-	// 		'vue$': 'vue/dist/vue.esm.js',
-	// 		'@': resolve('src')
-	// 	}
-	// },
+	],
+	devServer: {
+		contentBase: path.resolve(__dirname, "../dist"),
+		compress: true,
+		port: 9000,
+		inline: true
+	},
+	resolve: {
+		extensions: ['.js', '.vue', '.json'],
+		alias: {
+			'vue$': 'vue/dist/vue.esm.js',
+			'@': path.resolve(__dirname, '../src')
+		}
+	},
 	// // cheap-module-eval-source-map is faster for development
 	// devtool: '#cheap-module-eval-source-map',
 	// plugins: [

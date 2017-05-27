@@ -34,7 +34,9 @@ npm test
 ```
 
 
-css (autoprefixer)
+css (autoprefixer + icon 命令)
+
+图片 上线前要无损压缩
 
 文档管理
 

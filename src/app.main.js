@@ -6,6 +6,8 @@ import Element from 'element-ui'
 import App from './App.vue'
 import Router from './app.router'
 
+import './assets/styles/main.css'
+import './assets/fonts/icons.css'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
