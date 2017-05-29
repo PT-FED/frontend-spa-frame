@@ -1,5 +1,5 @@
 # frontend-spa-frame
- 基于vue + webpack搭建的一套spa前端框架
+ 基于 vue + webpack 搭建的一套spa前端框架
 
 ### 环境安装
 
@@ -12,7 +12,16 @@
         npm install -g cnpm --registry=https://registry.npm.taobao.org
 
  3. 安装依赖
+
         npm install 或者 cnpm install
+
+ 4. 执行构建并启动服务
+
+        npm start
+
+ 5. 打开浏览器查看
+
+        http://localhost:9000
 
 ### 基础命令
 

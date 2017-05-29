@@ -1,29 +1,38 @@
+/**
+ * 本地开发环境的构建脚本
+ */
+
 var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-var utils = require('./utils')
-var config = require('../config')
-
-// var vueLoaderConfig = require('./vue-loader.conf')
 
 module.exports = {
-	// devtool: 'cheap-eval-source-map',
-	entry: {
-		app: './src/app.main.js',
-		vendor: ['vue', 'vuex', 'vue-router', 'element-ui'],
+	// 教程: https://doc.webpack-china.org/configuration/entry-context/#entry
+	entry: {													// 入口配置
+		app: './src/app.main.js',								// 入口脚本
+		vendor: ['vue', 'vuex', 'vue-router', 'element-ui'],	// 公共基础脚本
 	},
-	output: {
-		path: path.resolve(__dirname, '../dist'),
-		filename: '[name].js',
-		publicPath: '/'
+	// 教程: https://doc.webpack-china.org/configuration/output/
+	output: {													// 输出配置
+		path: path.resolve(__dirname, '../dist'),				// 输出目录
+		filename: '[name].js',									// entry脚本的输出的文件名
+		publicPath: '/',										// 此输出目录对应的公开 URL
+		sourceMapFilename: '[file].map'							// 将sourcemap单独导出
 	},
+	// 教程: https://doc.webpack-china.org/configuration/resolve/
+	resolve: {												// 配置模块如何解析
+		alias: {											// 创建 import 或 require 的别名
+			'vue$': 'vue/dist/vue.esm.js',					// 补充修复vue2与webpack2集成时的bug
+			'@': path.resolve(__dirname, '../src')			// 配置绝对地址 basePath
+		}
+	},
+	// 教程: https://doc.webpack-china.org/configuration/module/
 	module: {
-		rules: [
+		rules: [											// 给不同类型的模块文件分配对应的解析器
 			{
 				test: /\.css$/,
-				// use: [ 'style-loader', 'css-loader' ]
-				use: ExtractTextPlugin.extract({
+                use: ExtractTextPlugin.extract({
 					fallback: "style-loader",
 					use: 'css-loader'
             	})
@@ -39,9 +48,8 @@ module.exports = {
 			},
 			{
 				test: /\.(png|jpe?g|gif)(\?.*)?$/,
-				loader: 'url-loader',
+				loader: 'file-loader',
 				options: {
-					limit: 10000,
 					name: 'assets/images/[name].[ext]'
 				}
 			},
@@ -50,6 +58,13 @@ module.exports = {
 				loader: 'file-loader',
 				options: {
 					name: 'assets/fonts/[name].[ext]'
+				}
+			},
+			{
+				test: /favicon\.ico/,
+				loader: 'file-loader',
+				options: {
+					name: '[name].[ext]'
 				}
 			}
 		]
@@ -70,34 +85,22 @@ module.exports = {
 		}),
 
 		// 教程: https://doc.webpack-china.org/plugins/html-webpack-plugin/
-		new HtmlWebpackPlugin({						// index模板
-			filename: 'index.html',
+		new HtmlWebpackPlugin({						// 首页模板
 			template: path.resolve(__dirname, '../src/index.html'),
-			favicon: path.resolve(__dirname, '../src/favicon.png'),
-			title: 'Webpack App',
 			inject: true
 		}),
 	],
-	devServer: {
-		contentBase: path.resolve(__dirname, "../dist"),
-		compress: true,
-		port: 9000,
-		inline: true
-	},
-	resolve: {
-		extensions: ['.js', '.vue', '.json'],
-		alias: {
-			'vue$': 'vue/dist/vue.esm.js',
-			'@': path.resolve(__dirname, '../src')
-		}
-	},
-	// // cheap-module-eval-source-map is faster for development
-	// devtool: '#cheap-module-eval-source-map',
-	// plugins: [
-	// 	// https://github.com/glenjamin/webpack-hot-middleware#installation--usage
-	// 	new webpack.HotModuleReplacementPlugin(),
-	// 	new webpack.NoEmitOnErrorsPlugin(),
-	// 	// https://github.com/ampedandwired/html-webpack-plugin
-	// 	new FriendlyErrorsPlugin()
-	// ]
+
+	// 教程: https://doc.webpack-china.org/configuration/devtool/
+	// 	    http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html
+	devtool: '#source-map',							// 生成 source map
+ 
+	// 教程: https://doc.webpack-china.org/configuration/dev-server/
+	devServer: {											// 启动本地调试服务器
+		contentBase: path.resolve(__dirname, "../dist"),	// 配置根目录
+		compress: true,										// 启动gzip压缩
+		host: "0.0.0.0",									// 支持局域网访问
+		port: 9000,											// 访问端口
+		inline: true										// 热部署方式
+	}
 }
