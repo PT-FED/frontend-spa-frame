@@ -98,3 +98,9 @@ d3 图表库
 GIS系统
 对docker友好
 seleminu自动化测试
+
+
+@bug
+ 清理package.json依赖
+ prod的模式切换
+
