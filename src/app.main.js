@@ -6,7 +6,6 @@ import Element from 'element-ui'
 import App from '@/App.vue'
 import Router from '@/app.router'
 
-import '@/favicon.ico'
 import '@/assets/styles/main.css'
 import '@/assets/fonts/icons.css'
 

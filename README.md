@@ -37,7 +37,7 @@
 
         npm run dev
 
- 4. 生成构建(未完成)
+ 4. 生产构建(未完成)
 
         npm run prod
 
@@ -65,7 +65,7 @@ npm test
 ```
 
 
-css (autoprefixer + icon 命令)
+css (autoprefixer)
 
 图片 上线前要无损压缩
 
