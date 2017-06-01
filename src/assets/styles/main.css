@@ -1,9 +1,3 @@
-body {
-    background: yellow;
-}
-div {
-    background: url(../images/logo.png);
-}
-p {
-    background: url(../images/log.png);
+html, body {
+    height: 100%;
 }
