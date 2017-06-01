@@ -8,7 +8,7 @@
     "dev-server": "webpack-dev-server --config build/webpack.dev.config.js",
     "dev": "./node_modules/.bin/webpack --config build/webpack.dev.config.js --env development --progress",
     "prod": "./node_modules/.bin/webpack --config build/webpack.dev.config.js --env production --progress",
-    "start": "npm run icon && npm run dev && npm run dev-server",
+    "start": "npm run dev && npm run dev-server",
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit"

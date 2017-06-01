@@ -29,11 +29,11 @@
 
         npm run icon
 
- 2. 编译iconfont + 本地构建 + 启动服务器
+ 2. 开发构建 + 启动服务器
 
         npm start
 
- 3. 本地开发构建
+ 3. 开发构建
 
         npm run dev
 
