@@ -1,14 +1,14 @@
 <template>
   <div class="menu-container" v-show="!isHome">
     <ul class="menu">
-      <li v-for="(item, index) in menuArr" :index="item.id" class="menu-item">
-        <a href="javascript:void(0)">
+      <li v-for="(item, index) in menuArr" class="menu-item">
+        <a href="javascript:void(0)" :index="item.id" @click="activeItem">
           <i class="icon icon-setup"></i>
           {{item.name}}
         </a>
         <ul class="sub-menu">
-          <li v-for="(subItem, index) in item.children" :index="subItem.id" class="menu-item">
-            <a href="javascript:void(0)">
+          <li v-for="(subItem, index) in item.children" class="menu-item">
+            <a href="javascript:void(0)" :index="subItem.id" @click="activeItem">
               {{subItem.name}}
             </a>
           </li>
@@ -101,7 +101,9 @@
       }
     },
     methods: {
-
+      activeItem: function(event) {
+        console.log(event);
+      }
     }
   }
 </script>
