@@ -1,3 +1,46 @@
 html, body {
-    height: 100%;
+  height: 100%;
+}
+
+ul li {
+  list-style: none;
+}
+
+.clearfix::before,
+.clearfix::after {
+  content: " ";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+.v-line {
+  width: 1px;
+  background-color: #e0e6ed;
+}
+.h-line {
+  height: 1px;
+  background-color: #e0e6ed;
+}
+
+svg.icon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+svg.icon {
+  position: relative;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+svg.icon.small {
+  width: .6rem;
+  height: .6rem;
 }

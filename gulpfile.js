@@ -22,3 +22,29 @@ gulp.task('iconfont', function () {
 		}))
 		.pipe(gulp.dest('src/assets/fonts/'));
 });
+
+/**
+ * 这个脚本的作用主要将零散的svg图标拼接成一大张svg图标雪碧图
+ */
+var svgstore = require('gulp-svgstore');
+var svgmin = require('gulp-svgmin');
+var inject = require('gulp-inject');
+var path = require('path');
+
+gulp.task('svgstore', function () {
+	return gulp
+		.src('src/assets/icons/*.svg')
+		.pipe(svgmin(function (file) {
+			var prefix = path.basename(file.relative, path.extname(file.relative));
+			return {
+				plugins: [{
+					cleanupIDs: {
+						prefix: prefix + '-',
+						minify: true
+					}
+				}]
+			}
+		}))
+		.pipe(svgstore())
+		.pipe(gulp.dest('src/assets/images/'));
+});
