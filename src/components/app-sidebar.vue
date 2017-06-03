@@ -2,13 +2,13 @@
   <div class="menu-container" v-show="!isHome">
     <ul class="menu">
       <li v-for="(item, index) in menuArr" class="menu-item">
-        <a href="javascript:void(0)" :index="item.id" @click="activeItem">
+        <a href="javascript:void(0)" @click="activeItem(item.path)">
           <i class="icon icon-setup"></i>
           {{item.name}}
         </a>
         <ul class="sub-menu">
           <li v-for="(subItem, index) in item.children" class="menu-item">
-            <a href="javascript:void(0)" :index="subItem.id" @click="activeItem">
+            <a href="javascript:void(0)" @click="activeItem(subItem.path)">
               {{subItem.name}}
             </a>
           </li>
@@ -43,12 +43,12 @@
                   id: '1-1',
                   name: '菜单11',
                   active: true,
-                  path: '/sysinfo/overview'
+                  path: '/safe/safe1'
                 },
                 {
                   id: '1-2',
                   name: '菜单12',
-                  path: '/sysinfo/overview'
+                  path: '/safe/safe2'
                 }
               ]
             },
@@ -101,8 +101,8 @@
       }
     },
     methods: {
-      activeItem: function(event) {
-        console.log(event);
+      activeItem: function(path) {
+        path && this.$router.push(path);
       }
     }
   }
@@ -127,6 +127,8 @@
   .menu-item a {
     color: #AFB4B8;
     display: block;
+    font-size: 0.9rem;
+    transition: all .1s;
   }
 
   .menu-item a:hover {
@@ -135,7 +137,7 @@
   }
 
   .menu-item .icon {
-    font-size: 13px;
+    font-size: 0.8rem;
     vertical-align: middle;
   }
 

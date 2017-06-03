@@ -25,7 +25,21 @@ export default new Router({
 		},
 		{
 			path: '/safe',
-			component: safe
+			component: safe,
+			children: [
+				{
+					path: '',
+					component: home
+				},
+				{
+					path: 'safe1',
+					component: home
+				},
+				{
+					path: 'safe2',
+					component: sdc
+				}
+			]
 		},
 		{
 			path: '/threaten',

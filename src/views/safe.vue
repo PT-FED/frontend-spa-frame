@@ -1,5 +1,5 @@
 <template>
-  <span>safe</span>
+  <router-view></router-view>
 </template>
 
 <script>

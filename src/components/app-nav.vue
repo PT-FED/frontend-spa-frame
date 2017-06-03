@@ -76,7 +76,6 @@
 
 <style scoped>
   ul {
-
   }
 
   ul li {
@@ -87,6 +86,7 @@
     font-size: 0.9rem;
     box-sizing: border-box;
     cursor: pointer;
+    transition: all .1s;
   }
 
   ul li a {
