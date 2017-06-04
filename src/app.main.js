@@ -13,8 +13,6 @@ import '@/assets/fonts/icons.css'
 import '@/assets/styles/reset.css'
 import '@/assets/styles/main.css'
 
-// import menu from '@/vuex/modules/menu'
-
 Vue.use(Vuex)
 Vue.use(VueRouter)
 Vue.use(Element)

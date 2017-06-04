@@ -1,5 +1,5 @@
 <template>
-  <span>forecast</span>
+  <router-view></router-view>
 </template>
 
 <script>

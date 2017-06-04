@@ -1,5 +1,5 @@
 <template>
-  <span>sysmanage</span>
+  <router-view></router-view>
 </template>
 
 <script>

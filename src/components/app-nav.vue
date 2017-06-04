@@ -1,6 +1,8 @@
 <template>
   <ul class="clearfix">
-    <li v-for="(item, index) in nav" @click="selected(index)" :class="{active: item.active}">
+    <li v-for="(item, index) in nav"
+        @click="selected(item.routerName)"
+        :class="{active: item.routerName === active}">
       <a href="javascript:void(0)" :data-index="index">{{item.name}}</a>
     </li>
   </ul>
@@ -14,61 +16,44 @@
         prevActiveIndex: 0,
         nav: [
           {
-            id: 'home',
-            name: '首页',
-            active: false,
-            path: 'home'
+            routerName: 'home',
+            name: '首页'
           },
           {
-            id: 'safe',
-            name: '安全态势感知中心',
-            active: false,
-            path: 'safe'
+            routerName: 'safe',
+            name: '安全态势感知中心'
           },
           {
-            id: 'threaten',
+            routerName: 'threaten',
             name: '威胁情报中心',
-            active: false,
-            path: 'threaten'
           },
           {
-            id: 'forecast',
+            routerName: 'forecast',
             name: '预测分析中心',
-            active: false,
-            path: 'forecast'
           },
           {
-            id: 'sdc',
+            routerName: 'sdc',
             name: 'SDC平台管理',
-            active: false,
-            path: 'sdc'
           },
           {
-            id: 'screen',
+            routerName: 'screen',
             name: '可视化大屏',
-            active: false,
-            path: 'screen'
           },
           {
-            id: 'sysmanage',
+            routerName: 'sysmanage',
             name: '系统管理',
-            active: false,
-            path: 'sysmanage'
           }
         ]
       }
     },
+    computed: {
+      active () {
+        return this.$store.state.navId
+      }
+    },
     methods: {
-      selected: function (index) {
-        this.nav[this.prevActiveIndex].active = false;
-        this.prevActiveIndex = index;
-        var item = this.nav[index];
-        item.active = true;
-        this.$router.push(item.path);
-        this.$store.commit('isHome', {
-          isHome: item.path === 'home',
-          navId: item.id
-        });
+      selected: function (routerName) {
+        this.$router.push({name: routerName});
       }
     }
   }

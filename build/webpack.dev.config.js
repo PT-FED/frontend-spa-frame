@@ -101,6 +101,7 @@ module.exports = {
 	// 教程: https://doc.webpack-china.org/configuration/dev-server/
 	devServer: {											// 启动本地调试服务器
 		contentBase: path.resolve(__dirname, "../dist"),	// 配置根目录
+		historyApiFallback: true,					// 使用HTML5 History API
 		compress: true,										// 启动gzip压缩
 		host: "0.0.0.0",									// 支持局域网访问
 		port: 9000,												// 访问端口

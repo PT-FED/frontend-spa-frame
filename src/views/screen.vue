@@ -1,5 +1,5 @@
 <template>
-  <span>screen</span>
+  <router-view></router-view>
 </template>
 
 <script>

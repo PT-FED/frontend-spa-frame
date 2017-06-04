@@ -1,5 +1,5 @@
 <template>
-  <span>sdc</span>
+  <router-view></router-view>
 </template>
 
 <script>

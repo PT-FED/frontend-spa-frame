@@ -1,4 +1,4 @@
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 
 /**
  * 教程: https://router.vuejs.org/zh-cn/advanced/lazy-loading.html
@@ -13,54 +13,68 @@ const sdc = resolve => require(['@/views/sdc.vue'], resolve);
 const bigscreen = resolve => require(['@/views/screen.vue'], resolve);
 const sysmanage = resolve => require(['@/views/sysmanage.vue'], resolve);
 
-export default new Router({
+let router = new VueRouter({
+	mode: 'history',
 	routes: [
 		{
-			path: '/',
-			component: home
+			path: '/', name: 'home', component: home
 		},
 		{
-			path: '/home',
-			component: home
+			path: '/home', name: 'home', component: home
 		},
 		{
-			path: '/safe',
-			component: safe,
+			path: '/safe', name: 'safe', component: safe,
 			children: [
 				{
-					path: '',
-					component: home
+					path: '',	name: 'safe', component: safe
 				},
 				{
-					path: 'safe1',
-					component: home
+					path: 'safe1', name: 'safe1', component: safe
 				},
 				{
-					path: 'safe2',
-					component: sdc
+					path: 'safe2', name: 'safe2', component: sdc
 				}
 			]
 		},
 		{
-			path: '/threaten',
-			component: threaten
+			path: '/threaten', name: 'threaten', component: threaten,
+			children: [
+				{
+					path: '',	name: 'threaten', component: home
+				}
+			]
 		},
 		{
-			path: '/forecast',
-			component: forecast
+			path: '/forecast', name: 'forecast', component: forecast
 		},
 		{
-			path: '/sdc',
-			component: sdc
+			path: '/sdc', name: 'sdc', component: sdc
 		},
 		{
-			path: '/screen',
-			component: bigscreen
+			path: '/screen', name: 'screen', component: bigscreen
 		},
 		{
-			path: '/sysmanage',
-			component: sysmanage
+			path: '/sysmanage', name: 'sysmanage', component: sysmanage
 		}
 	]
 })
+
+/**
+ * 主要用来拦截路由的钩子
+ * @param to Route: 即将要进入的目标 路由对象
+ * @param from: Route: 当前导航正要离开的路由
+ * @param next: Function: 一定要调用该方法来 resolve 这个钩子
+ */
+router.beforeEach((to, from, next) => {
+	let path = to.path === '/' ? to.path : to.path.substring(1);
+	let index = path.indexOf('/');
+	router.app.$store.commit('isHome', {
+		isHome: to.name === 'home',
+		navId: index === -1 ? path : path.substring(0, index),
+		menuId: to.name
+	});
+	next();
+});
+
+export default router;
 

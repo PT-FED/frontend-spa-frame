@@ -1,5 +1,5 @@
 <template>
-  <span>threaten</span>
+  <router-view></router-view>
 </template>
 
 <script>
