@@ -87,7 +87,6 @@
 <style scoped>
   .header {
     position: relative;
-    background-color: #1a1a1a;
   }
 
   .logo {

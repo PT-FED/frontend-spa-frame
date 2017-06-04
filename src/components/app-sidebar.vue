@@ -144,7 +144,7 @@
 <style scoped>
   .menu-container {
     height: 100%;
-    background-color: #1e1e1e;
+    border-left: 1px solid #252525;
   }
 
   .menu {
@@ -152,6 +152,7 @@
     text-align: left;
     box-sizing: border-box;
     border-top: 1px solid #252525;
+
   }
 
   .menu-item {

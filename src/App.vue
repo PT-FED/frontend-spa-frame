@@ -45,6 +45,7 @@
     bottom: 0;
     width: 100%;
     height: 3rem;
+    background-color: #1a1a1a;
   }
 
   .container {
@@ -56,10 +57,12 @@
   .sidebar {
     width: 200px;
     height: 100%;
+    background-color: #1e1e1e;
   }
 
   .content {
-    width: calc(80% - 200px);
+    width: calc(100% - 200px);
     height: 100%;
+    background: #222222;
   }
 </style>
