@@ -29,10 +29,19 @@ let router = new VueRouter({
 					path: '',	name: 'safe', component: safe
 				},
 				{
-					path: 'safe1', name: 'safe1', component: safe
+					path: 'safe1', name: 'safe1', component: home
 				},
 				{
 					path: 'safe2', name: 'safe2', component: sdc
+				},
+				{
+					path: 'safe3', name: 'safe3', component: home
+				},
+				{
+					path: 'safe4', name: 'safe4', component: sdc
+				},
+				{
+					path: 'safe5', name: 'safe5', component: home
 				}
 			]
 		},
@@ -40,7 +49,19 @@ let router = new VueRouter({
 			path: '/threaten', name: 'threaten', component: threaten,
 			children: [
 				{
-					path: '',	name: 'threaten', component: home
+					path: '', name: 'threaten', component: home,
+				},
+				{
+					path: 'threaten1', name: 'threaten1', component: home
+				},
+				{
+					path: 'threaten2', name: 'threaten2', component: sdc
+				},
+				{
+					path: 'threaten3', name: 'threaten3', component: home
+				},
+				{
+					path: 'threaten4', name: 'threaten4', component: sdc
 				}
 			]
 		},
